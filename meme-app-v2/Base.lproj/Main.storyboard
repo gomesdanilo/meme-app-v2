@@ -61,12 +61,12 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="guO-z8-KaH">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DeJ-Yi-Qaa">
                             <connections>
-                                <segue destination="qtW-3E-SOm" kind="presentation" identifier="addMeme" id="wpL-ym-5t3"/>
+                                <action selector="didTapOnAddButton:" destination="6pq-G1-cLm" id="Hw7-Rn-fEV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="editMeme" id="2EK-y3-gLv"/>
+                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="showEditor" id="n3F-oK-97g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFW-Ef-6nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eWx-KV-Hdb">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="eWx-KV-Hdb">
                             <size key="itemSize" width="100" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -112,7 +112,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-9p-a6Y">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4J-9p-a6Y">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         </imageView>
                                     </subviews>
@@ -136,22 +136,21 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="JVU-NC-82r">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="C3D-68-mWr">
                             <connections>
-                                <segue destination="qtW-3E-SOm" kind="presentation" identifier="addMeme" id="kwz-xe-R4J"/>
+                                <action selector="didTapOnAddButton:" destination="AkU-Fs-h90" id="OJd-Qv-ebV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="editMeme" id="r8Z-ic-mcd"/>
+                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="showEditor" id="rro-7p-Fok"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Oh-jQ-cMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1758" y="600"/>
+            <point key="canvasLocation" x="-1508" y="582"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dnV-xR-OhD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xml-OS-YfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="qtW-3E-SOm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyO-1W-n3a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -161,6 +160,7 @@
                         <segue destination="1s5-OQ-wKf" kind="relationship" relationship="rootViewController" id="x5y-dQ-Xxm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xml-OS-YfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-548" y="201"/>
         </scene>
@@ -272,7 +272,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="mUX-pD-igJ">
                             <connections>
-                                <action selector="didTapOnCancel:" destination="1s5-OQ-wKf" id="dVi-AU-kR8"/>
+                                <action selector="didTapOnCancel:" destination="1s5-OQ-wKf" id="WUj-af-3po"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -299,6 +299,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r8Z-ic-mcd"/>
+        <segue reference="rro-7p-Fok"/>
     </inferredMetricsTieBreakers>
 </document>
