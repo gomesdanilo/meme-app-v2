@@ -31,9 +31,6 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Register cell classes
-        //self.collectionView!.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,8 +58,25 @@ class MemeCollectionViewController: UICollectionViewController {
         let row = memes![indexPath.row]
         memeCell.imageView.image = row.memedImage
         
+        
         return cell
     }
     
-
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meme = memes![indexPath.row]
+        navigateToEditor(meme: meme)
+    }
+    
+    func getEditMemeViewController(segue: UIStoryboardSegue) -> EditMemeViewController {
+        let nc = segue.destination as! UINavigationController
+        let vc = nc.viewControllers[0] as! EditMemeViewController
+        return vc
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if "showEditor" == segue.identifier {
+            let vc = getEditMemeViewController(segue: segue)
+            vc.memeToEdit = self.selectedMeme
+        }
+    }
 }

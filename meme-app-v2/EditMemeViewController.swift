@@ -20,10 +20,10 @@ class EditMemeViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var canvas: UIView!
-    
     var mediaController = MediaController()
     var sharingController = SharingController()
     
+    var memeToEdit : Meme?
     var currentMeme : Meme?
     
     override func viewDidLoad() {
@@ -52,8 +52,6 @@ class EditMemeViewController: UIViewController {
     }
 
     @IBAction func didTapOnCancel(_ sender: Any) {
-        //resetModel()
-        //updateScreenFromModel()
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
@@ -94,7 +92,16 @@ class EditMemeViewController: UIViewController {
         mediaController.openGallery(viewController: self, button: sender as! UIBarButtonItem)
     }
     
-    func resetModel() {
+    func createMemeCopy(copy : Meme) {
+        currentMeme = Meme()
+        currentMeme?.originalImage = copy.originalImage
+        currentMeme?.memedImage = copy.memedImage
+        currentMeme?.topText = copy.topText
+        currentMeme?.bottomText = copy.bottomText
+    }
+    
+    func createEmptyMeme() {
+        currentMeme = Meme()
         currentMeme?.originalImage = nil
         currentMeme?.memedImage = nil
         currentMeme?.topText = AppConstants.defaultTopText
@@ -120,16 +127,26 @@ class EditMemeViewController: UIViewController {
         return memedImage
     }
     
+    func isDataLoaded() -> Bool {
+        return currentMeme != nil
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         
-        if currentMeme == nil {
-            currentMeme = Meme()
-            resetModel()
+        if(!isDataLoaded())
+        {
+            if memeToEdit != nil {
+                // Edit mode
+                createMemeCopy(copy: memeToEdit!)
+            } else {
+                // Add mode
+                createEmptyMeme()
+            }
+            updateScreenFromModel()
         }
-        updateScreenFromModel()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

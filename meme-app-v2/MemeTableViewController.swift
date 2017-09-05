@@ -68,7 +68,7 @@ class MemeTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if "showEditor" == segue.identifier {
             let vc = getEditMemeViewController(segue: segue)
-            vc.currentMeme = self.selectedMeme
+            vc.memeToEdit = self.selectedMeme
         }
     }
 }
