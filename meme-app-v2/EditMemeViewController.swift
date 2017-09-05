@@ -8,8 +8,9 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class EditMemeViewController: UIViewController {
 
+    var memes : [Meme]?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var exportButton: UIBarButtonItem!
@@ -56,8 +57,9 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func didTapOnCancel(_ sender: Any) {
-        resetModel()
-        updateScreenFromModel()
+        //resetModel()
+        //updateScreenFromModel()
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func updateModelWithTextFields(){
@@ -77,21 +79,16 @@ class MainViewController: UIViewController {
                 if success {
                     // Saves model here.
                     self.save()
+                    self.navigationController?.dismiss(animated: true, completion: nil)
                 }
             })
         }
     }
     
-//    func save() {
-//        // Save code goes here for app v2. No need to create model object here.
-//        print("Saving data... not implemented in this version")
-//    }
-
-    // Same code as tutorial.
     func save() {
         print("Saving meme image")
-        // Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: currentMeme.memedImage!)
+        AppDelegate.sharedInstance().memes.append(meme)
     }
     
     @IBAction func didTapOnCamera(_ sender: Any) {
@@ -140,7 +137,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController : MediaControllerDelegate {
+extension EditMemeViewController : MediaControllerDelegate {
     
     func didReadPicture(picture: UIImage) {
         currentMeme.originalImage = picture

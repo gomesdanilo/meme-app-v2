@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MainViewController : UITextFieldDelegate {
+extension EditMemeViewController : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == topTextField && textField.text == AppConstants.defaultTopText {
