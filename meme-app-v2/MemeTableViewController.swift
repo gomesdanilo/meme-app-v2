@@ -11,6 +11,7 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     var memes : [Meme]?
+    var selectedMeme : Meme?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,17 +44,27 @@ class MemeTableViewController: UITableViewController {
         cell.imageView?.contentMode = .scaleAspectFit
         return cell
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if "addMeme" == segue.identifier {
-//            let nc = segue.destination as! UINavigationController
-//            let vc = nc.viewControllers[0] as! EditMemeViewController
-//            vc.memes = memes
-//        } else if "editMeme" == segue.identifier {
-//            let nc = segue.destination as! UINavigationController
-//            let vc = nc.viewControllers[0] as! EditMemeViewController
-//            vc.memes = memes
-//        }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meme = memes![indexPath.row]
+        self.selectedMeme = meme
+        self.performSegue(withIdentifier: "editMeme", sender: self)
     }
     
+    func getEditMemeViewController(segue: UIStoryboardSegue) -> EditMemeViewController {
+        let nc = segue.destination as! UINavigationController
+        let vc = nc.viewControllers[0] as! EditMemeViewController
+        return vc
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if "addMeme" == segue.identifier {
+            // No action, next screen will load data from shared area.
+            let vc = getEditMemeViewController(segue: segue)
+            vc.currentMeme = nil
+        } else if "editMeme" == segue.identifier {
+            let vc = getEditMemeViewController(segue: segue)
+            vc.currentMeme = selectedMeme!
+        }
+    }
 }

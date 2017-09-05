@@ -10,8 +10,6 @@ import UIKit
 
 class EditMemeViewController: UIViewController {
 
-    var memes : [Meme]?
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var exportButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -26,7 +24,7 @@ class EditMemeViewController: UIViewController {
     var mediaController = MediaController()
     var sharingController = SharingController()
     
-    var currentMeme = Meme()
+    var currentMeme : Meme?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +33,6 @@ class EditMemeViewController: UIViewController {
         mediaController.delegate = self
         cameraButton.isEnabled = mediaController.canOpenCamera()
         galleryButton.isEnabled = mediaController.canOpenGallery()
-        
-        resetModel()
-        updateScreenFromModel()
     }
     
     func applyFontStyles(){
@@ -63,8 +58,8 @@ class EditMemeViewController: UIViewController {
     }
     
     func updateModelWithTextFields(){
-        currentMeme.topText = topTextField.text
-        currentMeme.bottomText = bottomTextField.text
+        currentMeme?.topText = topTextField.text
+        currentMeme?.bottomText = bottomTextField.text
     }
     
     @IBAction func didTapOnExport(_ sender: Any) {
@@ -72,9 +67,9 @@ class EditMemeViewController: UIViewController {
         updateModelWithTextFields()
         
         // Generate a memed image
-        currentMeme.memedImage = generateMemedImage()
+        currentMeme?.memedImage = generateMemedImage()
         
-        if let img = currentMeme.memedImage {
+        if let img = currentMeme?.memedImage {
             sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem, completionHandler: { (success) in
                 if success {
                     // Saves model here.
@@ -87,7 +82,7 @@ class EditMemeViewController: UIViewController {
     
     func save() {
         print("Saving meme image")
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: currentMeme.memedImage!)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: currentMeme!.memedImage!)
         AppDelegate.sharedInstance().memes.append(meme)
     }
     
@@ -100,18 +95,18 @@ class EditMemeViewController: UIViewController {
     }
     
     func resetModel() {
-        currentMeme.originalImage = nil
-        currentMeme.memedImage = nil
-        currentMeme.topText = AppConstants.defaultTopText
-        currentMeme.bottomText = AppConstants.defaultBottomText
+        currentMeme?.originalImage = nil
+        currentMeme?.memedImage = nil
+        currentMeme?.topText = AppConstants.defaultTopText
+        currentMeme?.bottomText = AppConstants.defaultBottomText
     }
     
     func updateScreenFromModel(){
-        imageView.image = currentMeme.originalImage
-        topTextField.text = currentMeme.topText
-        bottomTextField.text = currentMeme.bottomText
+        imageView.image = currentMeme?.originalImage
+        topTextField.text = currentMeme?.topText
+        bottomTextField.text = currentMeme?.bottomText
         
-        exportButton.isEnabled = currentMeme.originalImage != nil
+        exportButton.isEnabled = currentMeme?.originalImage != nil
     }
     
     
@@ -129,6 +124,12 @@ class EditMemeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        
+        if currentMeme == nil {
+            currentMeme = Meme()
+            resetModel()
+        }
+        updateScreenFromModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -140,8 +141,8 @@ class EditMemeViewController: UIViewController {
 extension EditMemeViewController : MediaControllerDelegate {
     
     func didReadPicture(picture: UIImage) {
-        currentMeme.originalImage = picture
-        currentMeme.memedImage = nil
+        currentMeme?.originalImage = picture
+        currentMeme?.memedImage = nil
         updateScreenFromModel()
     }
 

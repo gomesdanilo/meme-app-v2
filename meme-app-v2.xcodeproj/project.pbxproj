@@ -101,8 +101,7 @@
 			children = (
 				9928D6C11F5EBFF40072EEEE /* EditMemeViewController.swift */,
 				9928D6C21F5EBFF40072EEEE /* EditMemeViewController+Keyboard.swift */,
-				9928D6C31F5EBFF40072EEEE /* MediaController.swift */,
-				9928D6C51F5EBFF40072EEEE /* SharingController.swift */,
+				9928D6D61F5ECDA30072EEEE /* action */,
 				9928D6D01F5EC29B0072EEEE /* MemeTableViewController.swift */,
 				9928D6D21F5ECB560072EEEE /* MemeCollectionViewController.swift */,
 			);
@@ -118,6 +117,15 @@
 				9928D6BA1F5EBF3E0072EEEE /* Info.plist */,
 			);
 			name = Aux;
+			sourceTree = "<group>";
+		};
+		9928D6D61F5ECDA30072EEEE /* action */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6C31F5EBFF40072EEEE /* MediaController.swift */,
+				9928D6C51F5EBFF40072EEEE /* SharingController.swift */,
+			);
+			name = action;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

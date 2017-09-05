@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table-->
+        <!--Navigation Controller-->
         <scene sceneID="fTd-AF-aBl">
             <objects>
                 <navigationController id="keE-ar-Ypk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table" id="ue7-Tq-Goy"/>
+                    <tabBarItem key="tabBarItem" title="" image="table" id="ue7-Tq-Goy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8bN-Sj-6La">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -65,16 +65,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="editMeme" id="2EK-y3-gLv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFW-Ef-6nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1594" y="-101"/>
         </scene>
-        <!--Grid-->
+        <!--Navigation Controller-->
         <scene sceneID="zDd-9e-9nJ">
             <objects>
                 <navigationController id="HVg-rJ-kSP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grid" id="lzf-x8-zMU"/>
+                    <tabBarItem key="tabBarItem" title="" image="collection" id="lzf-x8-zMU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D7D-IC-4Fh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -87,7 +90,7 @@
             </objects>
             <point key="canvasLocation" x="-2399" y="582"/>
         </scene>
-        <!--Grid-->
+        <!--Sent Memes-->
         <scene sceneID="LRh-Y3-d0e">
             <objects>
                 <collectionViewController id="AkU-Fs-h90" customClass="MemeCollectionViewController" customModule="meme_app_v2" customModuleProvider="target" sceneMemberID="viewController">
@@ -130,11 +133,20 @@
                             <outlet property="delegate" destination="AkU-Fs-h90" id="NzD-p7-3IN"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Grid" id="JVU-NC-82r"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="JVU-NC-82r">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="C3D-68-mWr">
+                            <connections>
+                                <segue destination="qtW-3E-SOm" kind="presentation" identifier="addMeme" id="kwz-xe-R4J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="qtW-3E-SOm" kind="presentation" identifier="editMeme" id="r8Z-ic-mcd"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Oh-jQ-cMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1631.2" y="581.55922038980509"/>
+            <point key="canvasLocation" x="-1758" y="600"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dnV-xR-OhD">
@@ -150,7 +162,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-570" y="-101"/>
+            <point key="canvasLocation" x="-548" y="201"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aAM-GC-iIF">
@@ -279,7 +291,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xas-3i-Bba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="-101"/>
+            <point key="canvasLocation" x="284" y="200"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection" width="30" height="30"/>
+        <image name="table" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="r8Z-ic-mcd"/>
+    </inferredMetricsTieBreakers>
 </document>
