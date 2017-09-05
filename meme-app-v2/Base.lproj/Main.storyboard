@@ -264,7 +264,7 @@
                             <constraint firstItem="Vfi-z6-WCx" firstAttribute="top" secondItem="brl-9N-obr" secondAttribute="bottom" id="y13-1T-Oh6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Meme App V1" id="Kd5-Rp-oYv">
+                    <navigationItem key="navigationItem" title="Editor" id="Kd5-Rp-oYv">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="6zg-94-mA9">
                             <connections>
                                 <action selector="didTapOnExport:" destination="1s5-OQ-wKf" id="22a-LQ-ctE"/>

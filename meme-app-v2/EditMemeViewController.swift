@@ -23,8 +23,10 @@ class EditMemeViewController: UIViewController {
     var mediaController = MediaController()
     var sharingController = SharingController()
     
+    // Data Section
+    var memedImage : UIImage?
     var memeToEdit : Meme?
-    var currentMeme : Meme?
+    var dataLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,19 +57,12 @@ class EditMemeViewController: UIViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    func updateModelWithTextFields(){
-        currentMeme?.topText = topTextField.text
-        currentMeme?.bottomText = bottomTextField.text
-    }
-    
     @IBAction func didTapOnExport(_ sender: Any) {
         
-        updateModelWithTextFields()
-        
         // Generate a memed image
-        currentMeme?.memedImage = generateMemedImage()
+        memedImage = generateMemedImage()
         
-        if let img = currentMeme?.memedImage {
+        if let img = memedImage {
             sharingController.shareImage(image: img, viewController: self, button: sender as! UIBarButtonItem, completionHandler: { (success) in
                 if success {
                     // Saves model here.
@@ -79,8 +74,9 @@ class EditMemeViewController: UIViewController {
     }
     
     func save() {
-        print("Saving meme image")
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: currentMeme!.memedImage!)
+        print("Saving meme image to shared data")
+        let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text,
+                        originalImage: imageView.image, memedImage: memedImage)
         AppDelegate.sharedInstance().memes.append(meme)
     }
     
@@ -93,29 +89,18 @@ class EditMemeViewController: UIViewController {
     }
     
     func createMemeCopy(copy : Meme) {
-        currentMeme = Meme()
-        currentMeme?.originalImage = copy.originalImage
-        currentMeme?.memedImage = copy.memedImage
-        currentMeme?.topText = copy.topText
-        currentMeme?.bottomText = copy.bottomText
+        imageView.image = copy.originalImage
+        memedImage = copy.memedImage
+        topTextField.text = copy.topText
+        bottomTextField.text = copy.bottomText
     }
     
     func createEmptyMeme() {
-        currentMeme = Meme()
-        currentMeme?.originalImage = nil
-        currentMeme?.memedImage = nil
-        currentMeme?.topText = AppConstants.defaultTopText
-        currentMeme?.bottomText = AppConstants.defaultBottomText
+        imageView.image = nil
+        memedImage = nil
+        topTextField.text = AppConstants.defaultTopText
+        bottomTextField.text = AppConstants.defaultBottomText
     }
-    
-    func updateScreenFromModel(){
-        imageView.image = currentMeme?.originalImage
-        topTextField.text = currentMeme?.topText
-        bottomTextField.text = currentMeme?.bottomText
-        
-        exportButton.isEnabled = currentMeme?.originalImage != nil
-    }
-    
     
     func generateMemedImage() -> UIImage {
         
@@ -127,16 +112,14 @@ class EditMemeViewController: UIViewController {
         return memedImage
     }
     
-    func isDataLoaded() -> Bool {
-        return currentMeme != nil
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         
-        if(!isDataLoaded())
+        if(!dataLoaded)
         {
+            dataLoaded = true
+            
             if memeToEdit != nil {
                 // Edit mode
                 createMemeCopy(copy: memeToEdit!)
@@ -144,7 +127,7 @@ class EditMemeViewController: UIViewController {
                 // Add mode
                 createEmptyMeme()
             }
-            updateScreenFromModel()
+            updateShareButtonVisibility()
         }
         
     }
@@ -153,14 +136,18 @@ class EditMemeViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
     }
+    
+    func updateShareButtonVisibility(){
+        exportButton.isEnabled = imageView.image != nil
+    }
 }
 
 extension EditMemeViewController : MediaControllerDelegate {
     
     func didReadPicture(picture: UIImage) {
-        currentMeme?.originalImage = picture
-        currentMeme?.memedImage = nil
-        updateScreenFromModel()
+        memedImage = nil
+        imageView.image = picture
+        updateShareButtonVisibility()
     }
 
 }
