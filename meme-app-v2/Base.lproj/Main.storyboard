@@ -44,7 +44,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B42-3a-y5O">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="99.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="344" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -186,11 +186,15 @@
         <!--Navigation Controller-->
         <scene sceneID="dnV-xR-OhD">
             <objects>
-                <navigationController id="qtW-3E-SOm" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="qtW-3E-SOm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyO-1W-n3a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5gI-aD-hbU">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="1s5-OQ-wKf" kind="relationship" relationship="rootViewController" id="x5y-dQ-Xxm"/>
                     </connections>
@@ -229,24 +233,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brl-9N-obr">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="lxM-8K-2ef"/>
-                                    <barButtonItem systemItem="camera" id="izu-yG-Ns3">
-                                        <connections>
-                                            <action selector="didTapOnCamera:" destination="1s5-OQ-wKf" id="6hF-hy-klI"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="2Mr-Ef-3Kn"/>
-                                    <barButtonItem title="Gallery" id="whF-hT-F6K">
-                                        <connections>
-                                            <action selector="didTapOnGallery:" destination="1s5-OQ-wKf" id="ich-EP-7UX"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hbr-UN-quw"/>
-                                </items>
-                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Apl-y1-qdB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <subviews>
@@ -275,30 +261,42 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nSf-HP-Qvg" secondAttribute="trailing" id="035-am-DuL"/>
-                                    <constraint firstItem="g20-gK-ShA" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="top" constant="20" id="390-aC-IIp"/>
-                                    <constraint firstAttribute="bottom" secondItem="nSf-HP-Qvg" secondAttribute="bottom" id="6Lh-BK-7FC"/>
-                                    <constraint firstItem="nSf-HP-Qvg" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" id="Ar0-0i-eu3"/>
-                                    <constraint firstAttribute="trailing" secondItem="pQ2-JM-CFB" secondAttribute="trailing" constant="20" id="IQy-yZ-bPD"/>
-                                    <constraint firstItem="pQ2-JM-CFB" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" constant="20" id="MH4-x1-tUV"/>
-                                    <constraint firstAttribute="trailing" secondItem="g20-gK-ShA" secondAttribute="trailing" constant="20" id="QTu-aa-cla"/>
-                                    <constraint firstAttribute="bottom" secondItem="pQ2-JM-CFB" secondAttribute="bottom" constant="20" id="YGQ-R2-z0Q"/>
-                                    <constraint firstItem="nSf-HP-Qvg" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="top" id="YKR-LR-bWW"/>
-                                    <constraint firstItem="g20-gK-ShA" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" constant="20" id="qbg-DT-p99"/>
+                                    <constraint firstItem="g20-gK-ShA" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="top" constant="20" id="Fvg-HP-Ftd"/>
+                                    <constraint firstItem="nSf-HP-Qvg" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="top" id="LHO-A0-27s"/>
+                                    <constraint firstAttribute="trailing" secondItem="nSf-HP-Qvg" secondAttribute="trailing" id="O0e-4t-kzS"/>
+                                    <constraint firstAttribute="bottom" secondItem="pQ2-JM-CFB" secondAttribute="bottom" constant="20" id="Vc3-2S-8HC"/>
+                                    <constraint firstAttribute="trailing" secondItem="pQ2-JM-CFB" secondAttribute="trailing" constant="20" id="XlE-TZ-FhD"/>
+                                    <constraint firstItem="nSf-HP-Qvg" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" id="dm4-gc-k7K"/>
+                                    <constraint firstItem="g20-gK-ShA" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" constant="20" id="dsW-k8-yvO"/>
+                                    <constraint firstAttribute="bottom" secondItem="nSf-HP-Qvg" secondAttribute="bottom" id="nDl-Uf-IRq"/>
+                                    <constraint firstAttribute="trailing" secondItem="g20-gK-ShA" secondAttribute="trailing" constant="20" id="v2O-Fm-1KN"/>
+                                    <constraint firstItem="pQ2-JM-CFB" firstAttribute="leading" secondItem="Apl-y1-qdB" secondAttribute="leading" constant="20" id="xuN-2X-OcW"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Apl-y1-qdB" firstAttribute="top" secondItem="m5d-sz-6dL" secondAttribute="bottom" id="0au-5c-aZL"/>
-                            <constraint firstItem="brl-9N-obr" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leading" id="4pv-Oj-47L"/>
-                            <constraint firstItem="brl-9N-obr" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="bottom" id="6ZM-kc-fG9"/>
-                            <constraint firstItem="Apl-y1-qdB" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leading" id="B0G-ey-QgM"/>
-                            <constraint firstAttribute="trailing" secondItem="Apl-y1-qdB" secondAttribute="trailing" id="WEe-iM-i8y"/>
-                            <constraint firstAttribute="trailing" secondItem="brl-9N-obr" secondAttribute="trailing" id="uDL-EC-hoP"/>
-                            <constraint firstItem="Vfi-z6-WCx" firstAttribute="top" secondItem="brl-9N-obr" secondAttribute="bottom" id="y13-1T-Oh6"/>
+                            <constraint firstItem="Apl-y1-qdB" firstAttribute="leading" secondItem="sYa-Fo-Reb" secondAttribute="leading" id="HIK-pn-sgu"/>
+                            <constraint firstItem="Apl-y1-qdB" firstAttribute="top" secondItem="m5d-sz-6dL" secondAttribute="bottom" id="Hfz-OP-QCJ"/>
+                            <constraint firstItem="Vfi-z6-WCx" firstAttribute="top" secondItem="Apl-y1-qdB" secondAttribute="bottom" id="QhD-tx-w8S"/>
+                            <constraint firstAttribute="trailing" secondItem="Apl-y1-qdB" secondAttribute="trailing" id="XfO-5T-hoV"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lxM-8K-2ef"/>
+                        <barButtonItem systemItem="camera" id="izu-yG-Ns3">
+                            <connections>
+                                <action selector="didTapOnCamera:" destination="1s5-OQ-wKf" id="6hF-hy-klI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="2Mr-Ef-3Kn"/>
+                        <barButtonItem title="Gallery" id="whF-hT-F6K">
+                            <connections>
+                                <action selector="didTapOnGallery:" destination="1s5-OQ-wKf" id="ich-EP-7UX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hbr-UN-quw"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Editor" id="Kd5-Rp-oYv">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="6zg-94-mA9">
                             <connections>
