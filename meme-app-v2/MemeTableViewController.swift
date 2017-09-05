@@ -34,6 +34,11 @@ class MemeTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "showEditor", sender: self)
     }
     
+    func navigateToDetails(meme : Meme?){
+        self.selectedMeme = meme
+        self.performSegue(withIdentifier: "showDetails", sender: self)
+    }
+    
     func loadMemes(){
         self.memes = AppDelegate.sharedInstance().memes
         self.tableView.reloadData()
@@ -56,7 +61,7 @@ class MemeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meme = memes![indexPath.row]
-        self.navigateToEditor(meme: meme)
+        self.navigateToDetails(meme: meme)
     }
     
     func getEditMemeViewController(segue: UIStoryboardSegue) -> EditMemeViewController {
@@ -65,10 +70,31 @@ class MemeTableViewController: UITableViewController {
         return vc
     }
 
+    func getDetailsViewController(segue: UIStoryboardSegue) -> DetailsViewController {
+        let vc = segue.destination as! DetailsViewController
+        return vc
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if "showEditor" == segue.identifier {
             let vc = getEditMemeViewController(segue: segue)
             vc.memeToEdit = self.selectedMeme
+        } else if "showDetails" == segue.identifier {
+            let vc = getDetailsViewController(segue: segue)
+            vc.memedImage = self.selectedMeme?.memedImage
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let action = UITableViewRowAction(style: .normal, title: "EDIT") { (action, indexPath) in
+            let meme = self.memes![indexPath.row]
+            self.navigateToEditor(meme: meme)
+        }
+        return [action]
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
     }
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,15 +36,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="B42-3a-y5O" style="IBUITableViewCellStyleDefault" id="SqZ-GI-cCM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="B42-3a-y5O" style="IBUITableViewCellStyleDefault" id="SqZ-GI-cCM">
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SqZ-GI-cCM" id="iGC-Sh-QOP">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B42-3a-y5O">
-                                            <rect key="frame" x="15" y="0.0" width="325" height="99.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -67,11 +68,44 @@
                     </navigationItem>
                     <connections>
                         <segue destination="qtW-3E-SOm" kind="presentation" identifier="showEditor" id="n3F-oK-97g"/>
+                        <segue destination="P0a-6y-AZL" kind="show" identifier="showDetails" id="FRJ-zI-ZFQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFW-Ef-6nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1594" y="-101"/>
+        </scene>
+        <!--Details-->
+        <scene sceneID="OY7-Fk-fwb">
+            <objects>
+                <viewController title="Details" id="P0a-6y-AZL" customClass="DetailsViewController" customModule="meme_app_v2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pSO-6t-cDW"/>
+                        <viewControllerLayoutGuide type="bottom" id="ozQ-gS-9Ie"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="muq-wl-Cd4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Snn-hn-dgg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Snn-hn-dgg" firstAttribute="leading" secondItem="muq-wl-Cd4" secondAttribute="leadingMargin" constant="-16" id="E5Q-fv-Ucl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Snn-hn-dgg" secondAttribute="trailing" constant="-16" id="NqM-Mw-Oqj"/>
+                            <constraint firstItem="ozQ-gS-9Ie" firstAttribute="top" secondItem="Snn-hn-dgg" secondAttribute="bottom" id="QvF-ly-ieJ"/>
+                            <constraint firstItem="Snn-hn-dgg" firstAttribute="top" secondItem="pSO-6t-cDW" secondAttribute="bottom" id="iTj-7D-7ta"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Snn-hn-dgg" id="qYX-ko-Opc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kJB-fU-5Wl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-610" y="855"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zDd-9e-9nJ">
@@ -88,7 +122,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPr-xB-rlt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2399" y="582"/>
+            <point key="canvasLocation" x="-2614" y="1149"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="LRh-Y3-d0e">
@@ -142,11 +176,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="qtW-3E-SOm" kind="presentation" identifier="showEditor" id="rro-7p-Fok"/>
+                        <segue destination="P0a-6y-AZL" kind="show" identifier="showDetails" id="o5x-Qb-5Za"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Oh-jQ-cMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1508" y="582"/>
+            <point key="canvasLocation" x="-1735" y="817"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dnV-xR-OhD">
@@ -162,7 +197,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xml-OS-YfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="201"/>
+            <point key="canvasLocation" x="-610" y="61"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aAM-GC-iIF">
@@ -291,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xas-3i-Bba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="200"/>
+            <point key="canvasLocation" x="185" y="61"/>
         </scene>
     </scenes>
     <resources>
@@ -299,6 +334,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rro-7p-Fok"/>
+        <segue reference="n3F-oK-97g"/>
+        <segue reference="FRJ-zI-ZFQ"/>
     </inferredMetricsTieBreakers>
 </document>

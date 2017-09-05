@@ -20,6 +20,7 @@
 		9928D6D11F5EC29B0072EEEE /* MemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6D01F5EC29B0072EEEE /* MemeTableViewController.swift */; };
 		9928D6D31F5ECB560072EEEE /* MemeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6D21F5ECB560072EEEE /* MemeCollectionViewController.swift */; };
 		9928D6D51F5ECB880072EEEE /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6D41F5ECB880072EEEE /* MemeCollectionViewCell.swift */; };
+		9928D6DD1F5EE5430072EEEE /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9928D6DC1F5EE5430072EEEE /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		9928D6D01F5EC29B0072EEEE /* MemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTableViewController.swift; sourceTree = "<group>"; };
 		9928D6D21F5ECB560072EEEE /* MemeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewController.swift; sourceTree = "<group>"; };
 		9928D6D41F5ECB880072EEEE /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		9928D6DC1F5EE5430072EEEE /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +101,9 @@
 		9928D6CE1F5EC03E0072EEEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9928D6C11F5EBFF40072EEEE /* EditMemeViewController.swift */,
-				9928D6C21F5EBFF40072EEEE /* EditMemeViewController+Keyboard.swift */,
-				9928D6D61F5ECDA30072EEEE /* action */,
-				9928D6D01F5EC29B0072EEEE /* MemeTableViewController.swift */,
-				9928D6D21F5ECB560072EEEE /* MemeCollectionViewController.swift */,
+				9928D6DB1F5EE52C0072EEEE /* Details */,
+				9928D6D71F5EE5070072EEEE /* Editor */,
+				9928D6DA1F5EE5210072EEEE /* Sent Memes */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -126,6 +126,49 @@
 				9928D6C51F5EBFF40072EEEE /* SharingController.swift */,
 			);
 			name = action;
+			sourceTree = "<group>";
+		};
+		9928D6D71F5EE5070072EEEE /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6D61F5ECDA30072EEEE /* action */,
+				9928D6C11F5EBFF40072EEEE /* EditMemeViewController.swift */,
+				9928D6C21F5EBFF40072EEEE /* EditMemeViewController+Keyboard.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
+		9928D6D81F5EE50D0072EEEE /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6D01F5EC29B0072EEEE /* MemeTableViewController.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
+		9928D6D91F5EE5150072EEEE /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6D21F5ECB560072EEEE /* MemeCollectionViewController.swift */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
+		9928D6DA1F5EE5210072EEEE /* Sent Memes */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6D81F5EE50D0072EEEE /* Table */,
+				9928D6D91F5EE5150072EEEE /* Collection */,
+			);
+			name = "Sent Memes";
+			sourceTree = "<group>";
+		};
+		9928D6DB1F5EE52C0072EEEE /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				9928D6DC1F5EE5430072EEEE /* DetailsViewController.swift */,
+			);
+			name = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +246,7 @@
 				9928D6D51F5ECB880072EEEE /* MemeCollectionViewCell.swift in Sources */,
 				9928D6C81F5EBFF40072EEEE /* EditMemeViewController+Keyboard.swift in Sources */,
 				9928D6C71F5EBFF40072EEEE /* EditMemeViewController.swift in Sources */,
+				9928D6DD1F5EE5430072EEEE /* DetailsViewController.swift in Sources */,
 				9928D6AF1F5EBF3E0072EEEE /* AppDelegate.swift in Sources */,
 				9928D6D11F5EC29B0072EEEE /* MemeTableViewController.swift in Sources */,
 				9928D6D31F5ECB560072EEEE /* MemeCollectionViewController.swift in Sources */,
